@@ -26,27 +26,16 @@ Cinema.prototype.filterFilmsByYear = function (year) {
 }
 
 Cinema.prototype.checkFilmsLength = function(time) {
-  let results = []
-    this.films.forEach((film) => {
-      if (film.length >= time);
-      results.push(film);
-    });
-
-    if (this.films.length === results.length){
-      return true
-    } else {
-      return false
-    }
-
-}
+  return this.films.every((film) => {
+    return film.length >= time;
+  });
+};
 
 Cinema.prototype.totalRunningTime = function () {
-  let results = []
-  this.films.forEach((film) => {
-    results.push(film.length)
-  })
-  return results.reduce((runningTotal, currentNumber) => {return runningTotal + currentNumber}, 0)
-}
+  return this.films.reduce((total, film) => {
+    return total += film.length;
+  }, 0);
+};
 
 
 Cinema.prototype.filterFilmsByProperty = function (property, value) {
